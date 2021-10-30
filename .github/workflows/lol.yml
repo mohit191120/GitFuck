@@ -1,0 +1,23 @@
+name: Ubuntu-Server
+on:
+  push:
+    branches: [ main ] 
+    paths-ignore: 'README.md' 
+  workflow_dispatch:
+env:
+  # Change these values if you have forked it for your own works
+  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: SSH to GitHub Actions
+      uses: P3TERX/ssh2actions@v1.0.0
+    - uses: actions/checkout@v2
+    - run: source ubuntu-run.sh
+    
