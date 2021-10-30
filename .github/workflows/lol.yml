@@ -18,6 +18,4 @@ jobs:
     steps:
     - name: SSH to GitHub Actions
       uses: P3TERX/ssh2actions@v1.0.0
-    - uses: actions/checkout@v2
-    - run: source ubuntu-run.sh
-    
+  
