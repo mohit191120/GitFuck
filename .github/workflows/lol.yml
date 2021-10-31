@@ -8,6 +8,9 @@ env:
   # Change these values if you have forked it for your own works
   TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
   TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+  GitHubMail: "sudhiryadav.igi@gmail.com"
+  GitHubName: "TheSanty" 
+  Branch: "main"
 defaults:
   run:
     shell: bash
@@ -16,6 +19,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: Set Git Configs & Secrets
+      run: |
+        git config --global user.email ${GitHubMail}
+        git config --global user.name ${GitHubName}
+        git config --global credential.helper store
+        echo "https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
     - name: SSH to GitHub Actions
       uses: P3TERX/ssh2actions@v1.0.0
   
